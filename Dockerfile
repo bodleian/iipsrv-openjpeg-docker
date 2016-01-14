@@ -36,5 +36,6 @@ RUN sudo a2dissite 000-default.conf
 # enable our site conf
 RUN sudo a2ensite 001-iipsrv.conf
 
-# start apache when container started
-CMD service apache2 start
+# start apache when we run the container and start an ongoing process
+# to prevent the container from closing
+CMD service apache2 start && tail -f /dev/null
