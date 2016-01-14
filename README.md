@@ -21,11 +21,11 @@ Use local Dockerfile to build image.
 
 ### Images
 
-Place your images into a directory that is accessible by your webserver. *All paths given to IIP server must be absolute, e.g. via the FIF or IIIF variable.*
+The Dockerfile creates a /images/ directory at the server root and downloads a test JPEG2000 from http://iiif-test.stanford.edu/67352ccc-d1b0-11e1-89ae-279075081939.jp2.
 
 ### Test
 
-Point your browser to, for example, `http://<Host or Container IP>IIIF=/path/to/images/<image_name>.tif/jpg/jp2`
+Point your browser to `http://<Host or Container IP>IIIF=/images/67352ccc-d1b0-11e1-89ae-279075081939.jp2`
 
 ### Documentation and examples
 

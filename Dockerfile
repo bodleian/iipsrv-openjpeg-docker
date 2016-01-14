@@ -19,6 +19,12 @@ RUN cp src/iipsrv.fcgi /var/www/localhost/fcgi-bin
 COPY /apache2.conf /etc/apache2/apache2.conf
 COPY /001-iipsrv.conf /etc/apache2/sites-available/001-iipsrv.conf
 
+# create image dir and get test jp2 image
+RUN mkdir /images/ \
+	&& cd /images/ \
+	&& wget http://iiif-test.stanford.edu/67352ccc-d1b0-11e1-89ae-279075081939.jp2 \
+	&& chmod 777 67352ccc-d1b0-11e1-89ae-279075081939.jp2
+
 EXPOSE 80
 
 # enable fcgid mod 
