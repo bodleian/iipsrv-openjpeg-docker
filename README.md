@@ -27,7 +27,7 @@ The Dockerfile creates a /images/ directory at the server root and downloads a t
 
 ### Test
 
-Point your browser to `http://<Host or Container IP>:8080?IIIF=/images/67352ccc-d1b0-11e1-89ae-279075081939.jp2`
+Point your browser to `http://<Host or Container IP>:8080?IIIF=/images/67352ccc-d1b0-11e1-89ae-279075081939.jp2/full/400,400/90/default.jpg`
 
 ### Documentation and examples
 
