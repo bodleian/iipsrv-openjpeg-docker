@@ -21,7 +21,7 @@ Use local Dockerfile to build image.
 
 ### Images
 
-Put your images onto the server. Ensure this absolute path is accessible by your webserver. *All paths given to IIP server must be absolute, e.g. via the FIF or IIIF variable.*
+Put your images onto the server. Ensure this directory is accessible by your webserver. *All paths given to IIP server must be absolute, e.g. via the FIF or IIIF variable.*
 
 ### Test
 
