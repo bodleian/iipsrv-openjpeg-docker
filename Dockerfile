@@ -37,5 +37,4 @@ RUN sudo a2dissite 000-default.conf
 RUN sudo a2ensite 001-iipsrv.conf
 
 # start apache when container started
-ENTRYPOINT sudo service apache2 start
-
+CMD service apache2 start

@@ -17,7 +17,9 @@ Use local Dockerfile to build image.
 
 ### Start the container
 
-    $ docker run -d -p bdlss/iipsrv.openjpeg
+    $ docker run -d -p 8080:80 bdlss/iipsrv.openjpeg tail -f /dev/null
+
+This will push the docker containers port 80 to your localhost port 8080. The `tail -f /dev/null` is so that a process is running in the foreground, otherwise docker will close the container.
 
 ### Images
 
