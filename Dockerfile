@@ -24,6 +24,8 @@ RUN mkdir /images/ \
 	&& cd /images/ \
 	&& wget http://iiif-test.stanford.edu/67352ccc-d1b0-11e1-89ae-279075081939.jp2 \
 	&& chmod 777 67352ccc-d1b0-11e1-89ae-279075081939.jp2 \
+	&& wget http://merovingio.c2rmf.cnrs.fr/iipimage/PalaisDuLouvre.tif \
+	&& chmod 777 PalaisDuLouvre.tif \
 	&& chown -R www-data:www-data /images
 
 EXPOSE 80
