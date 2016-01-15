@@ -9,7 +9,7 @@ RUN apt-get update -y && apt-get install -y gcc g++ wget make git apache2 libapa
 # download and compile iipsrv, sleeps prevent 'Text file busy' error
 WORKDIR /tmp/iip
 RUN git clone https://github.com/moravianlibrary/iipsrv-openjpeg.git ./
-RUN chmod +x ./configure && sleep 2 && ./configure && sleep 2 && make
+RUN chmod +x ./configure && sleep 2 && ./configure && sleep 2 && make && make install
 
 # make www dir and copy iip binary into fcgi bin
 RUN mkdir -p /var/www/localhost/fcgi-bin
