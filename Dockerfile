@@ -9,12 +9,12 @@ RUN apt-get update -y && apt-get install -y gcc g++ wget cmake make git apache2 
 # download and compile openjpeg
 WORKDIR /tmp/openjpeg
 RUN git clone https://github.com/uclouvain/openjpeg.git ./
-RUN cmake . -DBUILD_THIRDPARTY:BOOL=ON && make && make install && make clean
+#RUN cmake . -DBUILD_THIRDPARTY:BOOL=ON && make && make install && make clean
 
 # download and compile iipsrv, sleeps prevent 'Text file busy' error
 WORKDIR /tmp/iip
 RUN git clone https://github.com/moravianlibrary/iipsrv-openjpeg.git ./
-RUN chmod +x ./configure && sleep 2 && ./configure --with-openjpeg=/usr/local/bin && sleep 2 && make && make install
+RUN chmod +x ./configure && sleep 2 && ./configure --with-openjpeg=/tmp/openjpeg && sleep 2 && make && make install
 
 # make www dir and copy iip binary into fcgi bin
 RUN mkdir -p /var/www/localhost/fcgi-bin
