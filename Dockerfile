@@ -16,10 +16,6 @@ RUN cmake . && make
 # download and compile iipsrv, sleeps prevent 'Text file busy' error
 WORKDIR /tmp/iip
 RUN git clone -b openjpeg --single-branch https://github.com/stweil/iipsrv.git ./
-#RUN git clone https://github.com/stweil/iipsrv.git ./
-#RUN git clone https://github.com/moravianlibrary/iipsrv-openjpeg.git ./
-#RUN git checkout openjpeg
-#RUN chmod +x ./autogen.sh && sleep 2 && ./autogen.sh
 # add the modified configure script
 #COPY configure configure
 RUN chmod +x ./configure && sleep 2 && sleep 2 && ./configure --with-openjpeg=/tmp/openjpeg && sleep 2 && make && make install
