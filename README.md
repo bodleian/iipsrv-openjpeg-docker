@@ -5,6 +5,8 @@ A Dockfile deployment of IIP image server with OPENJPEG @ https://github.com/mor
 
 Docker hub respository @ https://hub.docker.com/r/bdlss/iipsrv.openjpeg
 
+Build successes are logged @ https://hub.docker.com/r/bdlss/iipsrv-openjpeg-docker/builds/
+
 ### Use  pre-built image
 Download image from docker hub.
 
