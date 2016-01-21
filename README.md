@@ -1,7 +1,7 @@
 Docker build of IIP Image Server with OPENJPEG
-===========
+==============================================
 
-A Dockfile deployment of IIP image server with OPENJPEG @ https://github.com/moravianlibrary/iipsrv-openjpeg
+A Dockfile deployment of IIP image server with OPENJPEG @ https://github.com/moravianlibrary/iipsrv-openjpeg and https://github.com/uclouvain/openjpeg/tree/openjpeg-1.5
 
 Docker hub respository @ https://hub.docker.com/r/bdlss/iipsrv.openjpeg
 
