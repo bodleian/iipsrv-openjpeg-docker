@@ -1,4 +1,4 @@
-Docker build of IIP Image Server with OPENJPEG
+Docker build of IIP Image Server 1.0 with OPENJPEG 2.0
 ==============================================
 
 A Dockfile deployment of IIP image server with OPENJPEG @ https://github.com/moravianlibrary/iipsrv-openjpeg and https://github.com/uclouvain/openjpeg/tree/openjpeg-1.5
@@ -17,9 +17,9 @@ Use local Dockerfile to build image.
 
 ### Start the container
 
-    $ docker run -d -p 8080:80 bdlss/iipsrv.openjpeg
+    $ docker run -d -p 80:80 bdlss/iipsrv.openjpeg
 
-This will push the docker containers port 80 to your localhost port 8080. 
+This will push the docker container port 80 to your localhost port 80. Change the first parameter to 8080 if required (i.e. you already have a webserver running on your local machine).
 
 ### Images
 
@@ -39,7 +39,7 @@ docker exec -it <container ID> /bin/bash`
 
 Then:
 
-`/tmp/iiif-validator-0.9.1/iiif-validate.py -s 127.0.0.1:80 -p "fcgi-bin/iipsrv.fcgi?IIIF=" -i var/www/localhost/images/67352ccc-d1b0-11e1-89ae-279075081939.jp2 --version=2.0 -v` 
+`/tmp/iiif-validator-0.9.1/iiif-validate.py -s localhost:80 -p "fcgi-bin/iipsrv.fcgi?IIIF=" -i var/www/localhost/images/67352ccc-d1b0-11e1-89ae-279075081939.jp2 --version=2.0 -v` 
 
 ### Documentation and examples
 
