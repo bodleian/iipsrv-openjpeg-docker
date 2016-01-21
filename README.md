@@ -29,6 +29,18 @@ The Dockerfile creates a /images/ directory at the server root and downloads a t
 
 Point your browser to `http://<host or IP address>/fcgi-bin/iipsrv.fcgi?IIIF=67352ccc-d1b0-11e1-89ae-279075081939.jp2/full/full/0/default.jpg`
 
+After starting the container, you can IIIF validate your images from the command line:
+
+To get to the command line use:
+
+```bash
+docker ps
+docker exec -it <container ID> /bin/bash`
+
+Then:
+
+`/tmp/iiif-validator-0.9.1/iiif-validate.py -s 127.0.0.1:80 -p "fcgi-bin/iipsrv.fcgi?IIIF=" -i var/www/localhost/images/67352ccc-d1b0-11e1-89ae-279075081939.jp2 --version=2.0 -v` 
+
 ### Documentation and examples
 
 Further documentation and examples are available here http://iipimage.sourceforge.net/.
