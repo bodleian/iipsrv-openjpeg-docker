@@ -13,9 +13,10 @@ RUN cmake . && make && make install
 
 # download and compile iipsrv, sleeps prevent 'Text file busy' error
 WORKDIR /tmp/iip
+# alt stweil build https://github.com/stweil/iipsrv/tree/openjpeg
 #RUN git clone -b openjpeg --single-branch https://github.com/stweil/iipsrv.git ./
-RUN git clone https://github.com/moravianlibrary/iipsrv-openjpeg.git ./
 #RUN chmod +x ./autogen.sh && sleep 2 && ./autogen.sh
+RUN git clone https://github.com/moravianlibrary/iipsrv-openjpeg.git ./
 RUN chmod +x ./configure && sleep 2 && sleep 2 && ./configure --with-openjpeg=/tmp/openjpeg && sleep 2 && make && make install
 
 # make www dir and copy iip binary into fcgi bin
@@ -38,22 +39,11 @@ RUN mkdir -p /var/www/localhost/images/ \
 	&& chown -R www-data:www-data /var/www/
 
 # install python
-#WORKDIR /tmp/python
-#RUN apt-get install -y build-essential checkinstall libreadline-gplv2-dev libncursesw5-dev libssl-dev libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-dev
-#RUN wget http://python.org/ftp/python/2.7.6/Python-2.7.6.tgz \
-#	&& tar -xvf Python-2.7.6.tgz \
-#	&& cd Python-2.7.6 \
-#	&& ./configure \
-#	&& make \
-#	&& checkinstall
 RUN apt-get install -y python2.7 build-essential python-dev python-setuptools
 
 
 # get python tools
 WORKDIR tmp/pythontools
-#RUN wget https://pypi.python.org/packages/source/d/distribute/distribute-0.6.49.tar.gz \
-#    && tar zxfv distribute-0.6.49.tar.gz \
-#    && /usr/bin/python distribute-0.6.49/distribute_setup.py \
 RUN easy_install pip \
     && pip install bottle \
     && pip install python-magic \
