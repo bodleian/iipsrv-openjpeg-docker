@@ -37,7 +37,8 @@ To get to the command line use:
 
 ```bash
 docker ps
-docker exec -it <container ID> /bin/bash`
+docker exec -it <container ID> /bin/bash
+```
 
 Then:
 
