@@ -78,4 +78,4 @@ RUN sudo a2dissite 000-default.conf
 RUN sudo a2ensite 001-iipsrv.conf
 
 # start apache when we run the container, validate the test image, and start an ongoing process to prevent the container from closing
-CMD service apache2 start && python /tmp/iiif-validator-0.9.1/iiif-validate.py -s 127.0.0.1:80 -p "fcgi-bin/iipsrv.fcgi?IIIF=" -i var/www/localhost/images/67352ccc-d1b0-11e1-89ae-279075081939.jp2 --version=2.0 -v > /var/www/localhost/validation.txt && tail -f /dev/null
+CMD service apache2 start && tail -f /dev/null
