@@ -4,7 +4,9 @@ MAINTAINER BDLSS, Bodleian Libraries, Oxford University <calvin.butcher@bodleian
 ENV HOME /root 
 
 # Update packages and install tools 
-RUN apt-get update -y && apt-get install -y gcc g++ wget cmake make git apache2 libapache2-mod-fcgid openssl libssl-dev autoconf libtool libfcgi0ldbl libjpeg-turbo8 libjpeg-turbo8-dev libjpeg-dev libjpeg8  libjpeg8-dev libtiff4-dev zlib1g  libstdc++6 libmemcached-dev memcached libtiff-dev libpng-dev libz-dev libopenjpeg2 libopenjpeg-dev liblcms2-2 liblcms2-dev libpng12-0 libpng12-dev libmagic-dev libxml2-dev libxslt-dev
+RUN apt-get update -y && apt-get install -y gcc g++ wget cmake make git apache2 libapache2-mod-fcgid openssl libssl-dev autoconf libtool libfcgi0ldbl libjpeg-turbo8 libjpeg-turbo8-dev libjpeg-dev libjpeg8  libjpeg8-dev libtiff4-dev zlib1g  libstdc++6 libmemcached-dev memcached libtiff-dev libpng-dev libz-dev libopenjpeg2 libopenjpeg-dev liblcms2-2 liblcms2-dev libpng12-0 libpng12-dev 
+
+# libmagic-dev libxml2-dev libxslt-dev
 
 # download and compile openjpeg
 WORKDIR /tmp/openjpeg
@@ -41,21 +43,21 @@ RUN mkdir -p /var/www/localhost/images/ \
 	&& chown -R www-data:www-data /var/www/
 
 # install python
-RUN apt-get install -y python2.7 build-essential python-dev python-setuptools
+#RUN apt-get install -y python2.7 build-essential python-dev python-setuptools
 
 # get python tools
-WORKDIR tmp/pythontools
-RUN easy_install pip \
-    && pip install bottle \
-    && pip install python-magic \
-    && pip install lxml \
-    && pip install Pillow
+#WORKDIR tmp/pythontools
+#RUN easy_install pip \
+#    && pip install bottle \
+#    && pip install python-magic \
+#    && pip install lxml \
+#    && pip install Pillow
 
 # get IIIF validator
-WORKDIR /tmp
-RUN wget --no-check-certificate https://pypi.python.org/packages/source/i/iiif-validator/iiif-validator-0.9.1.tar.gz \
-	&& tar zxfv iiif-validator-0.9.1.tar.gz \
-	&& rm iiif-validator-0.9.1.tar.gz
+#WORKDIR /tmp
+#RUN wget --no-check-certificate https://pypi.python.org/packages/source/i/iiif-validator/iiif-validator-0.9.1.tar.gz \
+#	&& tar zxfv iiif-validator-0.9.1.tar.gz \
+#	&& rm iiif-validator-0.9.1.tar.gz
 
 EXPOSE 80
 
