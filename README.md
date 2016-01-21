@@ -8,16 +8,17 @@ Docker hub respository @ https://hub.docker.com/r/bdlss/iipsrv.openjpeg
 Build successes are logged @ https://hub.docker.com/r/bdlss/iipsrv-openjpeg-docker/builds/
 
 ### Use  pre-built image
-Download image from docker hub.
+Download image from docker hub. Defaults to `latest` tag.
 
     $ docker pull bdlss/iipsrv.openjpeg
 
 ### Build from scratch
-Use local Dockerfile to build image.
+Use local Dockerfile to build image. Defaults to `latest` tag.
 
-    $ docker build -t your_image_name .
+    $ docker build -t bdlss/iipsrv.openjpeg .
 
 ### Start the container
+Defaults to `latest` tag.
 
     $ docker run -d -p 80:80 bdlss/iipsrv.openjpeg
 
