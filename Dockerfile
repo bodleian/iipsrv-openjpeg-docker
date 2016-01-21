@@ -1,4 +1,4 @@
-FROM ubuntu:14.04
+FROM ubuntu:14.04.3
 
 MAINTAINER BDLSS, Bodleian Libraries, Oxford University <calvin.butcher@bodleian.ox.ac.uk>
 ENV HOME /root 
@@ -8,6 +8,8 @@ RUN apt-get update -y && apt-get install -y gcc g++ wget cmake make git apache2 
 
 # download and compile openjpeg
 WORKDIR /tmp/openjpeg
+# alt openjpeg version for stweil build
+#RUN git clone -b openjpeg-2.1 --single-branch https://github.com/uclouvain/openjpeg.git ./
 RUN git clone -b openjpeg-2.0 --single-branch https://github.com/uclouvain/openjpeg.git ./
 RUN cmake . && make && make install
 
@@ -40,7 +42,6 @@ RUN mkdir -p /var/www/localhost/images/ \
 
 # install python
 RUN apt-get install -y python2.7 build-essential python-dev python-setuptools
-
 
 # get python tools
 WORKDIR tmp/pythontools
