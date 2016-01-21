@@ -30,7 +30,7 @@ The Dockerfile creates a `/var/www/localhost/images/` directory and downloads a 
 
 ### Test
 
-Point your browser to `http://<host or IP address>/fcgi-bin/iipsrv.fcgi?IIIF=67352ccc-d1b0-11e1-89ae-279075081939.jp2/full/full/0/default.jpg`
+Point your browser to `http://<host or IP address, e.g. localhost>/fcgi-bin/iipsrv.fcgi?IIIF=67352ccc-d1b0-11e1-89ae-279075081939.jp2/full/full/0/default.jpg`
 
 After starting the container, you can IIIF validate your images from the command line:
 
