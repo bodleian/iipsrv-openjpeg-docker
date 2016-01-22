@@ -15,7 +15,7 @@ Download image from docker hub. Defaults to `latest` tag.
 ### Build from scratch
 Use local Dockerfile to build image. Defaults to `latest` tag.
 
-    $ docker build -t bdlss/iipsrv.openjpeg .
+    $ docker build -t --no-cache bdlss/iipsrv.openjpeg .
 
 ### Start the container
 Defaults to `latest` tag.
@@ -34,7 +34,7 @@ Point your browser to `http://localhost/fcgi-bin/iipsrv.fcgi?IIIF=67352ccc-d1b0-
 
 Or `http://localhost/fcgi-bin/iipsrv.fcgi?IIIF=PalaisDuLouvre.tif/full/full/0/default.jpg`
 
-After starting the container, you can IIIF validate your images from the command line:
+~~After starting the container, you can IIIF validate your images from the command line:~~
 
 To get to the command line use:
 
