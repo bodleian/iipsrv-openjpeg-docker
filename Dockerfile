@@ -4,8 +4,7 @@ MAINTAINER BDLSS, Bodleian Libraries, Oxford University <calvin.butcher@bodleian
 ENV HOME /root 
 
 # Update packages and install tools 
-RUN apt-get update -y && apt-get install -y gcc g++ wget cmake make git apache2 libapache2-mod-fcgid openssl libssl-dev autoconf libtool libfcgi0ldbl libjpeg-turbo8 libjpeg-turbo8-dev libjpeg-dev libjpeg8  libjpeg8-dev libtiff4-dev zlib1g  libstdc++6 libmemcached-dev memcached libtiff-dev libpng-dev libz-dev libopenjpeg2 libopenjpeg-dev liblcms2-2 liblcms2-dev libpng12-0 libpng12-dev 
-
+RUN apt-get update -y && apt-get install -y gcc g++ wget cmake make git apache2 libapache2-mod-fcgid openssl libssl-dev autoconf libtool libfcgi0ldbl libjpeg-turbo8 libjpeg-turbo8-dev libjpeg-dev libjpeg8  libjpeg8-dev libtiff5-dev zlib1g  libstdc++6 libmemcached-dev memcached libtiff-dev libpng-dev libz-dev libopenjpeg2 libopenjpeg-dev liblcms2-2 liblcms2-dev libpng12-0 libpng12-dev build-essential
 # libmagic-dev libxml2-dev libxslt-dev
 
 # download and compile openjpeg
@@ -17,18 +16,20 @@ RUN cmake . && make && make install
 
 # download and compile iipsrv, sleeps prevent 'Text file busy' error
 WORKDIR /tmp/iip
+# regular build w/ kakadu
+#git clone https://github.com/ruven/iipsrv.git ./
 # alt stweil build https://github.com/stweil/iipsrv/tree/openjpeg
 #RUN git clone -b openjpeg --single-branch https://github.com/stweil/iipsrv.git ./
 #RUN chmod +x ./autogen.sh && sleep 2 && ./autogen.sh
 RUN git clone https://github.com/moravianlibrary/iipsrv-openjpeg.git ./
 RUN chmod +x ./configure && sleep 2 && sleep 2 && ./configure --with-openjpeg=/tmp/openjpeg && sleep 2 && make && make install
-
+sudo
 # make www dir and copy iip binary into fcgi bin
 RUN mkdir -p /var/www/localhost/fcgi-bin
 RUN cp src/iipsrv.fcgi /var/www/localhost/fcgi-bin
 
 # copy over apache2.conf for apache
-COPY /apache2.conf /etc/apache2/apache2.conf
+#COPY /apache2.conf /etc/apache2/apache2.conf
 COPY /001-iipsrv.conf /etc/apache2/sites-available/001-iipsrv.conf
 # add usr/local/lib to /etc/ld.so.conf and run ldconfig
 RUN printf "include /etc/ld.so.conf.d/*.conf\ninclude /usr/local/lib\n" > /etc/ld.so.conf && ldconfig
