@@ -23,7 +23,7 @@ WORKDIR /tmp/iip
 #RUN chmod +x ./autogen.sh && sleep 2 && ./autogen.sh
 RUN git clone https://github.com/moravianlibrary/iipsrv-openjpeg.git ./
 RUN chmod +x ./configure && sleep 2 && sleep 2 && ./configure --with-openjpeg=/tmp/openjpeg && sleep 2 && make && make install
-sudo
+
 # make www dir and copy iip binary into fcgi bin
 RUN mkdir -p /var/www/localhost/fcgi-bin
 RUN cp src/iipsrv.fcgi /var/www/localhost/fcgi-bin
