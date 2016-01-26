@@ -1,26 +1,26 @@
 Docker build of IIP Image Server 1.0 with OPENJPEG 2.0
 ==============================================
 
-A Dockfile deployment of IIP image server with OPENJPEG @ https://github.com/moravianlibrary/iipsrv-openjpeg and https://github.com/uclouvain/openjpeg/tree/openjpeg-2.0
+A Dockfile deployment of IIP image server with OPENJPEG @ https://github.com/stweil/iipsrv/tree/openjpeg and https://github.com/uclouvain/openjpeg/tree/openjpeg-2.0
 
-Docker hub respository @ https://hub.docker.com/r/bdlss/iipsrv.openjpeg
+Docker hub respository @ https://hub.docker.com/r/bdlss/iipsrv-openjpeg-docker/
 
 Build successes are logged @ https://hub.docker.com/r/bdlss/iipsrv-openjpeg-docker/builds/
 
 ### Use  pre-built image
 Download image from docker hub. Defaults to `latest` tag.
 
-    $ docker pull bdlss/iipsrv.openjpeg
-
+    $ docker pull bdlss/iipsrv-openjpeg-docker
+    
 ### Build from scratch
 Use local Dockerfile to build image. Defaults to `latest` tag.
 
-    $ docker build -t --no-cache bdlss/iipsrv.openjpeg .
+    $ docker build -t --no-cache bdlss/iipsrv-openjpeg-docker .
 
 ### Start the container
 Defaults to `latest` tag.
 
-    $ docker run -d -p 80:80 bdlss/iipsrv.openjpeg
+    $ docker run -d -p 80:80 bdlss/iipsrv-openjpeg-docker
 
 This will push the docker container port 80 to your localhost port 80. Change the first parameter to 8080 if required (i.e. you already have a webserver running on your local machine).
 
