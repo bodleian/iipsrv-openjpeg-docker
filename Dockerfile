@@ -20,7 +20,7 @@ WORKDIR /tmp/iip
 #git clone https://github.com/ruven/iipsrv.git ./
 # alt stweil build https://github.com/stweil/iipsrv/tree/openjpeg
 RUN git clone -b openjpeg --single-branch https://github.com/stweil/iipsrv.git ./
-RUN chmod +x ./autogen.sh && sleep 2 && ./autogen.sh
+RUN chmod +x autogen.sh && sleep 2 && ./autogen.sh
 #RUN git clone https://github.com/moravianlibrary/iipsrv-openjpeg.git ./
 RUN chmod +x configure && sleep 2 && sleep 2 && ./configure --with-openjpeg=/tmp/openjpeg && sleep 2 && make && make install
 
@@ -40,6 +40,7 @@ RUN mkdir -p /var/www/localhost/images/ \
 	&& wget http://iiif-test.stanford.edu/67352ccc-d1b0-11e1-89ae-279075081939.jp2 \
 	&& chmod 777 67352ccc-d1b0-11e1-89ae-279075081939.jp2 \
 	&& wget http://merovingio.c2rmf.cnrs.fr/iipimage/PalaisDuLouvre.tif \
+
 	&& chmod 777 PalaisDuLouvre.tif \
 	&& chown -R www-data:www-data /var/www/
 
