@@ -4,14 +4,14 @@ MAINTAINER BDLSS, Bodleian Libraries, Oxford University <calvin.butcher@bodleian
 ENV HOME /root 
 
 # Update packages and install tools 
-RUN apt-get update -y && apt-get install -y gcc g++ wget cmake make git apache2 libapache2-mod-fcgid openssl libssl-dev autoconf libtool libfcgi0ldbl libjpeg-turbo8 libjpeg-turbo8-dev libjpeg-dev libjpeg8  libjpeg8-dev libtiff5-dev zlib1g  libstdc++6 libmemcached-dev memcached libtiff-dev libpng-dev libz-dev libopenjpeg2 libopenjpeg-dev liblcms2-2 liblcms2-dev libpng12-0 libpng12-dev build-essential
+RUN apt-get update -y && apt-get install -y gcc g++ wget cmake make git apache2 libapache2-mod-fcgid openssl libssl-dev autoconf libtool libfcgi0ldbl libjpeg-turbo8 libjpeg-turbo8-dev libjpeg-dev libjpeg8  libjpeg8-dev libtiff5-dev zlib1g  libstdc++6 libmemcached-dev memcached libtiff-dev libpng-dev libz-dev libopenjpeg2 libopenjpeg-dev liblcms2-2 liblcms2-dev libpng12-0 libpng12-dev build-essential openjdk-7-jdk
 # libmagic-dev libxml2-dev libxslt-dev
 
 # download and compile openjpeg
 WORKDIR /tmp/openjpeg
 # alt openjpeg version for stweil build
-#RUN git clone -b openjpeg-2.1 --single-branch https://github.com/uclouvain/openjpeg.git ./
-RUN git clone -b openjpeg-2.0 --single-branch https://github.com/uclouvain/openjpeg.git ./
+RUN git clone -b openjpeg-2.1 --single-branch https://github.com/uclouvain/openjpeg.git ./
+#RUN git clone -b openjpeg-2.0 --single-branch https://github.com/uclouvain/openjpeg.git ./
 RUN cmake . && make && make install
 
 # download and compile iipsrv, sleeps prevent 'Text file busy' error
@@ -19,10 +19,10 @@ WORKDIR /tmp/iip
 # regular build w/ kakadu
 #git clone https://github.com/ruven/iipsrv.git ./
 # alt stweil build https://github.com/stweil/iipsrv/tree/openjpeg
-#RUN git clone -b openjpeg --single-branch https://github.com/stweil/iipsrv.git ./
-#RUN chmod +x ./autogen.sh && sleep 2 && ./autogen.sh
-RUN git clone https://github.com/moravianlibrary/iipsrv-openjpeg.git ./
-RUN chmod +x ./configure && sleep 2 && sleep 2 && ./configure --with-openjpeg=/tmp/openjpeg && sleep 2 && make && make install
+RUN git clone -b openjpeg --single-branch https://github.com/stweil/iipsrv.git ./
+RUN chmod +x ./autogen.sh && sleep 2 && ./autogen.sh
+#RUN git clone https://github.com/moravianlibrary/iipsrv-openjpeg.git ./
+RUN chmod +x configure && sleep 2 && sleep 2 && ./configure --with-openjpeg=/tmp/openjpeg && sleep 2 && make && make install
 
 # make www dir and copy iip binary into fcgi bin
 RUN mkdir -p /var/www/localhost/fcgi-bin
