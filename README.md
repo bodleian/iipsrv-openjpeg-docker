@@ -1,7 +1,7 @@
-Docker build of IIP Image Server 1.0 with OPENJPEG 2.0
+Docker build of IIP Image Server 1.0 with OPENJPEG 2.1
 ==============================================
 
-A Dockfile deployment of IIP image server with OPENJPEG @ https://github.com/stweil/iipsrv/tree/openjpeg and https://github.com/uclouvain/openjpeg/tree/openjpeg-2.0
+A Dockfile deployment of IIP image server with OPENJPEG @ https://github.com/stweil/iipsrv/tree/openjpeg and https://github.com/uclouvain/openjpeg/tree/openjpeg-2.1
 
 Docker hub respository @ https://hub.docker.com/r/bdlss/iipsrv-openjpeg-docker/
 
@@ -11,7 +11,7 @@ Build successes are logged @ https://hub.docker.com/r/bdlss/iipsrv-openjpeg-dock
 Download image from docker hub. Defaults to `latest` tag.
 
     $ docker pull bdlss/iipsrv-openjpeg-docker
-    
+
 ### Build from scratch
 Use local Dockerfile to build image. Defaults to `latest` tag.
 
