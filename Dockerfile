@@ -10,8 +10,8 @@ RUN apt-get update -y && apt-get install -y gcc g++ wget cmake make git apache2 
 # download and compile openjpeg
 WORKDIR /tmp/openjpeg
 # alt openjpeg version for stweil build
-RUN git clone -b openjpeg-2.1 --single-branch https://github.com/uclouvain/openjpeg.git ./
-#RUN git clone -b openjpeg-2.0 --single-branch https://github.com/uclouvain/openjpeg.git ./
+#RUN git clone -b openjpeg-2.1 --single-branch https://github.com/uclouvain/openjpeg.git ./
+RUN git clone -b openjpeg-2.0 --single-branch https://github.com/uclouvain/openjpeg.git ./
 RUN cmake . && make && make install
 
 # download and compile iipsrv, sleeps prevent 'Text file busy' error
@@ -19,9 +19,9 @@ WORKDIR /tmp/iip
 # regular build w/ kakadu
 #git clone https://github.com/ruven/iipsrv.git ./
 # alt stweil build https://github.com/stweil/iipsrv/tree/openjpeg
-RUN git clone -b openjpeg --single-branch https://github.com/stweil/iipsrv.git ./
+#RUN git clone -b openjpeg --single-branch https://github.com/stweil/iipsrv.git ./
+RUN git clone https://github.com/moravianlibrary/iipsrv-openjpeg.git ./
 RUN chmod +x autogen.sh && sleep 2 && ./autogen.sh
-#RUN git clone https://github.com/moravianlibrary/iipsrv-openjpeg.git ./
 RUN chmod +x configure && sleep 2 && ./configure --with-openjpeg=/tmp/openjpeg && sleep 2 && make && make install
 
 # make www dir and copy iip binary into fcgi bin
