@@ -13,7 +13,8 @@ RUN apt-get update -y && apt-get install -y gcc g++ wget cmake make git apache2 
 WORKDIR /tmp/openjpeg
 # alt openjpeg version for stweil build
 RUN git clone https://github.com/uclouvain/openjpeg.git ./
-RUN git checkout openjpeg-2.1 
+RUN git checkout openjpeg-1.5
+#RUN git checkout openjpeg-2.1
 #RUN git clone -b openjpeg-2.0 --single-branch https://github.com/uclouvain/openjpeg.git ./
 RUN cmake . && make && make install
 
