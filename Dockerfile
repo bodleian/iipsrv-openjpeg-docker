@@ -4,7 +4,7 @@ MAINTAINER BDLSS, Bodleian Libraries, Oxford University <calvin.butcher@bodleian
 ENV HOME /root 
 
 # Update packages and install tools 
-RUN apt-get update -y && apt-get install -y gcc g++ wget cmake make git apache2 libapache2-mod-fcgid openssl libssl-dev autoconf libfcgi0ldbl libtool libjpeg8  libjpeg8-dev
+RUN apt-get update -y && apt-get install -y gcc g++ wget cmake make git apache2 libapache2-mod-fcgid openssl libssl-dev autoconf libfcgi0ldbl libtool libjpeg8  libjpeg8-dev libtiff4-dev
 
 # libjpeg-turbo8 libjpeg-turbo8-dev libjpeg-dev libjpeg8  libjpeg8-dev libtiff4-dev zlib1g  libstdc++6 libmemcached-dev memcached libtiff-dev libpng-dev libz-dev libopenjpeg2 libopenjpeg-dev liblcms2-2 liblcms2-dev libpng12-0 libpng12-dev build-essential openjdk-7-jdk
 # libmagic-dev libxml2-dev libxslt-dev
