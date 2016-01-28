@@ -24,7 +24,7 @@ RUN git clone https://github.com/stweil/iipsrv.git ./
 RUN git checkout openjpeg
 #RUN git clone https://github.com/moravianlibrary/iipsrv-openjpeg.git ./
 RUN chmod +x autogen.sh && sleep 2 && ./autogen.sh
-RUN chmod +x configure && sleep 2 && ./configure --with-openjpeg=/usr/lib/x86_64-linux-gnu/ && sleep 2 && make && make install
+RUN chmod +x configure && sleep 2 && ./configure --with-openjpeg=/tmp/openjpeg && sleep 2 && make && make install
 
 # make www dir and copy iip binary into fcgi bin
 RUN mkdir -p /var/www/localhost/fcgi-bin
