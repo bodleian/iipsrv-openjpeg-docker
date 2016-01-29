@@ -9,14 +9,22 @@ RUN apt-get update -y && apt-get install -y build-essential wget cmake make git 
 # libjpeg-turbo8 libjpeg-turbo8-dev libjpeg-dev libjpeg8  libjpeg8-dev libtiff4-dev zlib1g  libstdc++6 libmemcached-dev memcached libtiff-dev libpng-dev libz-dev libopenjpeg2 libopenjpeg-dev liblcms2-2 liblcms2-dev libpng12-0 libpng12-dev
 # libmagic-dev libxml2-dev libxslt-dev
 
-# download and compile openjpeg
+
+# download and compile openjpeg1.5
+WORKDIR /tmp/openjpeg1
+# alt openjpeg version for stweil build
+RUN git clone https://github.com/uclouvain/openjpeg.git ./
+RUN git checkout openjpeg-1.5
+RUN ./bootstrap.sh && ./configure && make && make install
+
+# download and compile openjpeg2.1
 WORKDIR /tmp/openjpeg
 # alt openjpeg version for stweil build
 RUN git clone https://github.com/uclouvain/openjpeg.git ./
 #RUN git checkout openjpeg-1.5
 RUN git checkout openjpeg-2.1
 #RUN git clone -b openjpeg-2.0 --single-branch https://github.com/uclouvain/openjpeg.git ./
-RUN ./bootstrap.sh && ./configure && make && make install
+RUN cmake . && make && make install
 
 # add usr/local/lib to /etc/ld.so.conf and run ldconfig
 RUN printf "include /etc/ld.so.conf.d/*.conf\ninclude /usr/local/lib\n" > /etc/ld.so.conf && ldconfig
