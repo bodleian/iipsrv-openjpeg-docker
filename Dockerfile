@@ -4,27 +4,19 @@ MAINTAINER BDLSS, Bodleian Libraries, Oxford University <calvin.butcher@bodleian
 ENV HOME /root 
 
 # Update packages and install tools 
-RUN apt-get update -y && apt-get install -y gcc g++ wget cmake make git apache2 libapache2-mod-fcgid openssl libssl-dev autoconf libfcgi0ldbl libtool libjpeg8  libjpeg8-dev libtiff4-dev libpng12-0 libpng12-dev
+RUN apt-get update -y && apt-get install -y build-essential wget cmake make git apache2 libapache2-mod-fcgid openssl libssl-dev autoconf libfcgi0ldbl libtool libjpeg-turbo8 libjpeg-turbo8-dev libtiff4-dev libpng12-0 libpng12-dev
 
 # libjpeg-turbo8 libjpeg-turbo8-dev libjpeg-dev libjpeg8  libjpeg8-dev libtiff4-dev zlib1g  libstdc++6 libmemcached-dev memcached libtiff-dev libpng-dev libz-dev libopenjpeg2 libopenjpeg-dev liblcms2-2 liblcms2-dev libpng12-0 libpng12-dev
 # libmagic-dev libxml2-dev libxslt-dev
 
 # download and compile openjpeg
-WORKDIR /tmp/openjpeg1
+WORKDIR /tmp/openjpeg
 # alt openjpeg version for stweil build
 RUN git clone https://github.com/uclouvain/openjpeg.git ./
-RUN git checkout openjpeg-1.5
-#RUN git checkout openjpeg-2.1
-#RUN git clone -b openjpeg-2.0 --single-branch https://github.com/uclouvain/openjpeg.git ./
-RUN cmake . && make && make install
-
-WORKDIR /tmp/openjpeg2
-# alt openjpeg version for stweil build
-RUN git clone https://github.com/uclouvain/openjpeg.git ./
+#RUN git checkout openjpeg-1.5
 RUN git checkout openjpeg-2.1
 #RUN git clone -b openjpeg-2.0 --single-branch https://github.com/uclouvain/openjpeg.git ./
 RUN cmake . && make && make install
-
 
 # download and compile iipsrv, sleeps prevent 'Text file busy' error
 WORKDIR /tmp/iip
@@ -35,7 +27,7 @@ RUN git clone https://github.com/stweil/iipsrv.git ./
 RUN git checkout openjpeg
 #RUN git clone https://github.com/moravianlibrary/iipsrv-openjpeg.git ./
 RUN chmod +x autogen.sh && sleep 2 && ./autogen.sh
-RUN chmod +x configure && sleep 2 && ./configure --with-openjpeg=/tmp/openjpeg2 && sleep 2 && make && make install
+RUN chmod +x configure && sleep 2 && ./configure --with-openjpeg=/tmp/openjpeg && sleep 2 && make && make install
 
 # make www dir and copy iip binary into fcgi bin
 RUN mkdir -p /var/www/localhost/fcgi-bin
