@@ -18,6 +18,9 @@ RUN git checkout openjpeg-2.1
 #RUN git clone -b openjpeg-2.0 --single-branch https://github.com/uclouvain/openjpeg.git ./
 RUN cmake . && make && make install
 
+# add usr/local/lib to /etc/ld.so.conf and run ldconfig
+RUN printf "include /etc/ld.so.conf.d/*.conf\ninclude /usr/local/lib\n" > /etc/ld.so.conf && ldconfig
+
 # download and compile iipsrv, sleeps prevent 'Text file busy' error
 WORKDIR /tmp/iip
 # regular build w/ kakadu
@@ -27,7 +30,7 @@ RUN git clone https://github.com/stweil/iipsrv.git ./
 RUN git checkout openjpeg
 #RUN git clone https://github.com/moravianlibrary/iipsrv-openjpeg.git ./
 RUN chmod +x autogen.sh && sleep 2 && ./autogen.sh
-RUN chmod +x configure && sleep 2 && ./configure --with-openjpeg=/tmp/openjpeg && sleep 2 && make && make install
+RUN chmod +x configure && sleep 2 && ./configure && sleep 2 && make && make install
 
 # make www dir and copy iip binary into fcgi bin
 RUN mkdir -p /var/www/localhost/fcgi-bin
@@ -36,8 +39,6 @@ RUN cp src/iipsrv.fcgi /var/www/localhost/fcgi-bin
 # copy over apache2.conf for apache
 #COPY /apache2.conf /etc/apache2/apache2.conf
 COPY /001-iipsrv.conf /etc/apache2/sites-available/001-iipsrv.conf
-# add usr/local/lib to /etc/ld.so.conf and run ldconfig
-RUN printf "include /etc/ld.so.conf.d/*.conf\ninclude /usr/local/lib\n" > /etc/ld.so.conf && ldconfig
 
 # create image dir and get test jp2 image
 RUN mkdir -p /var/www/localhost/images/ \
