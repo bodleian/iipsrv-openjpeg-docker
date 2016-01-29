@@ -4,26 +4,23 @@ MAINTAINER BDLSS, Bodleian Libraries, Oxford University <calvin.butcher@bodleian
 ENV HOME /root 
 
 # Update packages and install tools 
-RUN apt-get update -y && apt-get install -y build-essential wget cmake make git apache2 libapache2-mod-fcgid openssl libssl-dev autoconf libfcgi0ldbl libtool libjpeg-turbo8 libjpeg-turbo8-dev libtiff4-dev libpng12-0 libpng12-dev
+RUN apt-get update -y && apt-get install -y build-essential wget cmake make git apache2 libapache2-mod-fcgid openssl libssl-dev autoconf libfcgi0ldbl libtool libjpeg-turbo8 libjpeg-turbo8-dev libtiff4-dev libpng12-0 libpng12-dev libmemcached-dev memcached liblcms2-2 liblcms2-dev
 
-# libjpeg-turbo8 libjpeg-turbo8-dev libjpeg-dev libjpeg8  libjpeg8-dev libtiff4-dev zlib1g  libstdc++6 libmemcached-dev memcached libtiff-dev libpng-dev libz-dev libopenjpeg2 libopenjpeg-dev liblcms2-2 liblcms2-dev libpng12-0 libpng12-dev
-# libmagic-dev libxml2-dev libxslt-dev
-
+# libjpeg-turbo8 libjpeg-turbo8-dev libjpeg-dev libjpeg8  libjpeg8-dev libtiff4-dev zlib1g  libstdc++6 libmemcached-dev memcached libtiff-dev libpng-dev libz-dev libopenjpeg2 libopenjpeg-dev  libpng12-0 libpng12-dev libmagic-dev libxml2-dev libxslt-dev
 
 # download and compile openjpeg1.5
-WORKDIR /tmp/openjpeg1
+#WORKDIR /tmp/openjpeg1
 # alt openjpeg version for stweil build
-RUN git clone https://github.com/uclouvain/openjpeg.git ./
-RUN git checkout openjpeg-1.5
-RUN ./bootstrap.sh && ./configure && make && make install
+#RUN git clone https://github.com/uclouvain/openjpeg.git ./
+#RUN git checkout openjpeg-1.5
+#RUN ./bootstrap.sh && ./configure --subdir-objects && make && make install
 
-# download and compile openjpeg2.1
+# download and compile openjpeg2
 WORKDIR /tmp/openjpeg
 # alt openjpeg version for stweil build
-RUN git clone https://github.com/uclouvain/openjpeg.git ./
-#RUN git checkout openjpeg-1.5
-RUN git checkout openjpeg-2.1
-#RUN git clone -b openjpeg-2.0 --single-branch https://github.com/uclouvain/openjpeg.git ./
+#RUN git clone https://github.com/uclouvain/openjpeg.git ./
+#RUN git checkout openjpeg-2.1
+RUN git clone -b openjpeg-2.0 --single-branch https://github.com/uclouvain/openjpeg.git ./
 RUN cmake . && make && make install
 
 # add usr/local/lib to /etc/ld.so.conf and run ldconfig
@@ -34,9 +31,9 @@ WORKDIR /tmp/iip
 # regular build w/ kakadu
 #git clone https://github.com/ruven/iipsrv.git ./
 # alt stweil build https://github.com/stweil/iipsrv/tree/openjpeg
-RUN git clone https://github.com/stweil/iipsrv.git ./
-RUN git checkout openjpeg
-#RUN git clone https://github.com/moravianlibrary/iipsrv-openjpeg.git ./
+#RUN git clone https://github.com/stweil/iipsrv.git ./
+#RUN git checkout openjpeg
+RUN git clone https://github.com/moravianlibrary/iipsrv-openjpeg.git ./
 RUN chmod +x autogen.sh && sleep 2 && ./autogen.sh
 RUN chmod +x configure && sleep 2 && ./configure && sleep 2 && make && make install
 
