@@ -16,7 +16,7 @@ RUN git clone https://github.com/uclouvain/openjpeg.git ./
 #RUN git checkout openjpeg-1.5
 RUN git checkout openjpeg-2.1
 #RUN git clone -b openjpeg-2.0 --single-branch https://github.com/uclouvain/openjpeg.git ./
-RUN cmake . && make && make install
+RUN ./bootstrap.sh && ./configure && make && make install
 
 # add usr/local/lib to /etc/ld.so.conf and run ldconfig
 RUN printf "include /etc/ld.so.conf.d/*.conf\ninclude /usr/local/lib\n" > /etc/ld.so.conf && ldconfig
