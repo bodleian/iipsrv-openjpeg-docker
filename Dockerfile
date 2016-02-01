@@ -18,9 +18,9 @@ RUN apt-get update -y && apt-get install -y build-essential wget cmake make git 
 # download and compile openjpeg2
 WORKDIR /tmp/openjpeg
 # alt openjpeg version for stweil build
-RUN git clone https://github.com/uclouvain/openjpeg.git ./
-RUN git checkout openjpeg-2.1
-#RUN git clone -b openjpeg-2.0 --single-branch https://github.com/uclouvain/openjpeg.git ./
+#RUN git clone https://github.com/uclouvain/openjpeg.git ./
+#RUN git checkout openjpeg-2.1
+RUN git clone -b openjpeg-2.0 --single-branch https://github.com/uclouvain/openjpeg.git ./
 RUN cmake . && make && make install
 
 # add usr/local/lib to /etc/ld.so.conf and run ldconfig
@@ -31,9 +31,9 @@ WORKDIR /tmp/iip
 # regular build w/ kakadu
 #git clone https://github.com/ruven/iipsrv.git ./
 # alt stweil build https://github.com/stweil/iipsrv/tree/openjpeg
-RUN git clone https://github.com/stweil/iipsrv.git ./
-RUN git checkout openjpeg
-#RUN git clone https://github.com/moravianlibrary/iipsrv-openjpeg.git ./
+#RUN git clone https://github.com/stweil/iipsrv.git ./
+#RUN git checkout openjpeg
+RUN git clone https://github.com/moravianlibrary/iipsrv-openjpeg.git ./
 RUN chmod +x autogen.sh && sleep 2 && ./autogen.sh
 RUN chmod +x configure && sleep 2 && ./configure --with-openjpeg=/tmp/openjpeg && sleep 2 && make && make install
 
