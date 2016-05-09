@@ -56,7 +56,7 @@ RUN mkdir -p /var/www/localhost/images/ \
 	&& chown -R www-data:www-data /var/www/
 
 # install python
-#RUN apt-get install -y python2.7 build-essential python-dev python-setuptools
+#RUN apt-get install -y python2.7 build-essential python-dev python-setuptools libxml2-dev libxslt1-dev
 
 # get python tools
 #WORKDIR tmp/pythontools
