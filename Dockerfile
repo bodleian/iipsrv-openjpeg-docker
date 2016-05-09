@@ -31,9 +31,9 @@ WORKDIR /tmp/iip
 # regular build w/ kakadu
 #git clone https://github.com/ruven/iipsrv.git ./
 # alt stweil build https://github.com/stweil/iipsrv/tree/openjpeg
-#RUN git clone https://github.com/stweil/iipsrv.git ./
-#RUN git checkout openjpeg
-RUN git clone https://github.com/moravianlibrary/iipsrv-openjpeg.git ./
+RUN git clone https://github.com/stweil/iipsrv.git ./
+RUN git checkout openjpeg
+#RUN git clone https://github.com/moravianlibrary/iipsrv-openjpeg.git ./
 RUN chmod +x autogen.sh && sleep 2 && ./autogen.sh
 RUN chmod +x configure && sleep 2 && ./configure --with-openjpeg=/tmp/openjpeg && sleep 2 && make && make install
 
@@ -56,21 +56,21 @@ RUN mkdir -p /var/www/localhost/images/ \
 	&& chown -R www-data:www-data /var/www/
 
 # install python
-#RUN apt-get install -y python2.7 build-essential python-dev python-setuptools libxml2-dev libxslt1-dev
+RUN apt-get install -y python2.7 build-essential python-dev python-setuptools libxml2-dev libxslt1-dev
 
 # get python tools
-#WORKDIR tmp/pythontools
-#RUN easy_install pip \
-#    && pip install bottle \
-#    && pip install python-magic \
-#    && pip install lxml \
-#    && pip install Pillow
+WORKDIR /tmp/pythontools
+RUN easy_install pip \
+    && pip install bottle \
+    && pip install python-magic \
+    && pip install lxml \
+    && pip install Pillow
 
 # get IIIF validator
-#WORKDIR /tmp
-#RUN wget --no-check-certificate https://pypi.python.org/packages/source/i/iiif-validator/iiif-validator-0.9.1.tar.gz \
-#	&& tar zxfv iiif-validator-0.9.1.tar.gz \
-#	&& rm iiif-validator-0.9.1.tar.gz
+WORKDIR /tmp
+RUN wget --no-check-certificate https://pypi.python.org/packages/source/i/iiif-validator/iiif-validator-0.9.1.tar.gz \
+	&& tar zxfv iiif-validator-0.9.1.tar.gz \
+	&& rm iiif-validator-0.9.1.tar.gz
 
 EXPOSE 80
 
