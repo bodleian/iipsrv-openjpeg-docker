@@ -19,7 +19,7 @@ RUN apt-get update -y && apt-get install -y build-essential wget cmake make git 
 WORKDIR /tmp/openjpeg
 # alt openjpeg version for stweil build
 RUN git clone https://github.com/uclouvain/openjpeg.git ./
-RUN git checkout openjpeg-2.1
+RUN git checkout tags/version.2.1
 #RUN git clone -b openjpeg-2.0 --single-branch https://github.com/uclouvain/openjpeg.git ./
 RUN cmake . && make && make install
 
