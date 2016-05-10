@@ -18,9 +18,9 @@ RUN apt-get update -y && apt-get install -y build-essential wget cmake make git 
 # download and compile openjpeg2
 WORKDIR /tmp/openjpeg
 # alt openjpeg version for stweil build
-#RUN git clone https://github.com/uclouvain/openjpeg.git ./
-#RUN git checkout openjpeg-2.1
-RUN git clone -b openjpeg-2.0 --single-branch https://github.com/uclouvain/openjpeg.git ./
+RUN git clone https://github.com/uclouvain/openjpeg.git ./
+RUN git checkout openjpeg-2.1
+#RUN git clone -b openjpeg-2.0 --single-branch https://github.com/uclouvain/openjpeg.git ./
 RUN cmake . && make && make install
 
 # add usr/local/lib to /etc/ld.so.conf and run ldconfig
