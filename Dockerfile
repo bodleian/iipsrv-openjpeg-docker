@@ -53,9 +53,9 @@ RUN easy_install pip \
 
 # get IIIF validator
 WORKDIR /tmp
-RUN wget --no-check-certificate https://pypi.python.org/packages/source/i/iiif-validator/iiif-validator-0.9.1.tar.gz \
-	&& tar zxfv iiif-validator-0.9.1.tar.gz \
-	&& rm iiif-validator-0.9.1.tar.gz
+RUN wget --no-check-certificate https://pypi.python.org/packages/source/i/iiif-validator/iiif-validator-1.0.0.tar.gz \
+	&& tar zxfv iiif-validator-1.0.0.tar.gz \
+	&& rm iiif-validator-1.0.0.tar.gz
 
 EXPOSE 80
 
