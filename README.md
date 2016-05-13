@@ -49,9 +49,13 @@ docker ps
 docker exec -it <container ID> /bin/bash
 ```
 
-Then:
+Then for an image served at `http://localhost:8080/prefix/image_id` the validator can be run with:
 
-`/tmp/iiif-validator-0.9.1/iiif-validate.py -s localhost:80 -p "fcgi-bin/iipsrv.fcgi?IIIF=" -i var/www/localhost/images/67352ccc-d1b0-11e1-89ae-279075081939.jp2 --version=2.0 -v` 
+    $ /tmp/iiif-validate.py -s localhost:8080 -p prefix -i image_id --version=2.0 -v
+
+e.g.
+
+    $ /tmp/iiif-validator-0.9.1/iiif-validate.py -s localhost:80 -p "fcgi-bin/iipsrv.fcgi?IIIF=" -i var/www/localhost/images/67352ccc-d1b0-11e1-89ae-279075081939.jp2 --version=2.0 -v
 
 ### Documentation and examples
 
