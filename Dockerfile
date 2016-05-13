@@ -13,6 +13,8 @@ RUN git clone https://github.com/uclouvain/openjpeg.git ./
 RUN git checkout tags/version.2.1
 RUN cmake . && make && make install
 
+RUN export USE_OPENJPEG=1
+
 # add usr/local/lib to /etc/ld.so.conf and run ldconfig
 RUN printf "include /etc/ld.so.conf.d/*.conf\ninclude /usr/local/lib\n" > /etc/ld.so.conf && ldconfig
 
