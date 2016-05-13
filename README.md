@@ -7,6 +7,8 @@ Docker hub respository @ https://hub.docker.com/r/bdlss/iipsrv-openjpeg-docker/
 
 Build successes are logged @ https://hub.docker.com/r/bdlss/iipsrv-openjpeg-docker/builds/
 
+IIIF validator v 1.0.0 @ https://pypi.python.org/pypi/iiif-validator/1.0.0
+
 ### Use  pre-built image
 Download image from docker hub. Defaults to `latest` tag. Docker will normally run as root unless otherwise configured.
 
