@@ -9,6 +9,8 @@ Build successes are logged @ https://hub.docker.com/r/bdlss/iipsrv-openjpeg-dock
 
 IIIF validator v 1.0.0 @ https://pypi.python.org/pypi/iiif-validator/1.0.0
 
+Please also refer to https://github.com/moravianlibrary/iipsrv-openjpeg/issues/2
+
 ### Use  pre-built image
 Download image from docker hub. Defaults to `latest` tag. Docker will normally run as root unless otherwise configured.
 
