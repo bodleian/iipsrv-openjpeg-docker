@@ -20,7 +20,7 @@ To run the docker command without sudo, you need to add your user (who must have
 
 	$ sudo usermod -aG docker <user_name>
 
-### Build from scratch
+### Build from scratch (optional)
 Use local Dockerfile to build image. Defaults to `latest` tag.
 
     $ sudo docker build -t bdlss/iipsrv-openjpeg-docker .
