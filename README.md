@@ -1,4 +1,4 @@
-Docker build of IIP Image Server 1.0 with OPENJPEG 2.1
+Docker build of IIP Image Server 1.0 with OPENJPEG 2.1 on Ubuntu 14.04
 ==============================================
 
 A Dockfile deployment of IIP image server with OPENJPEG @ https://github.com/stweil/iipsrv/tree/openjpeg and https://github.com/uclouvain/openjpeg/tree/openjpeg-2.1
