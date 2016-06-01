@@ -21,7 +21,7 @@ RUN printf "include /etc/ld.so.conf.d/*.conf\ninclude /usr/local/lib\n" > /etc/l
 # download and compile Stweil's iipsrv w/ openjpeg2.1, sleeps prevent 'Text file busy' error
 WORKDIR /tmp/iip
 RUN git clone https://github.com/stweil/iipsrv.git ./
-RUN git checkout openjpeg
+RUN git checkout tags/openjpeg-20160529
 RUN chmod +x autogen.sh && sleep 2 && ./autogen.sh
 RUN chmod +x configure && sleep 2 && ./configure --with-openjpeg=/tmp/openjpeg && sleep 2 && make && make install
 
