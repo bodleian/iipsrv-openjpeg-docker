@@ -8,7 +8,6 @@ RUN apt-get update -y && apt-get install -y build-essential wget cmake make git 
 
 # Download and compile openjpeg2.1
 WORKDIR /tmp/openjpeg
-# alt openjpeg version for stweil build
 RUN git clone https://github.com/uclouvain/openjpeg.git ./
 RUN git checkout tags/version.2.1
 RUN cmake . && make && make install
