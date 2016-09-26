@@ -43,12 +43,17 @@ sudo docker run -d -P --name iipimages -v /home/iipsrv/data:/var/www/localhost/i
 
 The above means that the host directory `/home/iipsrv/data` will be mapped to the directory within the container for image store.
 
+
+### Images
+
+Download the images into your mapped host images directory, e.g. `/home/iipsrv/data`.
+
 ```bash
-	&& cd /var/www/localhost/images/ \
-	&& wget http://iiif-test.stanford.edu/67352ccc-d1b0-11e1-89ae-279075081939.jp2 \
-	&& chmod 777 67352ccc-d1b0-11e1-89ae-279075081939.jp2 \
-	&& wget http://merovingio.c2rmf.cnrs.fr/iipimage/PalaisDuLouvre.tif \
-	&& chmod 777 PalaisDuLouvre.tif \
+cd <your host images directory>
+wget http://iiif-test.stanford.edu/67352ccc-d1b0-11e1-89ae-279075081939.jp2 
+chmod 777 67352ccc-d1b0-11e1-89ae-279075081939.jp2
+wget http://merovingio.c2rmf.cnrs.fr/iipimage/PalaisDuLouvre.tif
+chmod 777 PalaisDuLouvre.tif
 ```
 
 ### Start the container
@@ -57,10 +62,6 @@ Defaults to `latest` tag.
     $ sudo docker run -d -p 80:80 bdlss/iipsrv-openjpeg-docker
 
 This will push the docker container port 80 to your localhost port 80. Change the first parameter to 8080 if required (i.e. you already have a webserver running on your local machine).
-
-### Images
-
-The Dockerfile creates a `/var/www/localhost/images/` directory and downloads a test JPEG2000 from http://iiif-test.stanford.edu/67352ccc-d1b0-11e1-89ae-279075081939.jp2 and a test TIF from http://merovingio.c2rmf.cnrs.fr/iipimage/PalaisDuLouvre.tif.
 
 ### Test
 
