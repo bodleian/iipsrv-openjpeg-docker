@@ -23,7 +23,7 @@ We want to create a shared volume on the host so we can remotely store our image
 sudo apt-get update
 sudo apt-get -y install apt-transport-https software-properties-common
 sudo add-apt-repository -y "deb https://clusterhq-archive.s3.amazonaws.com/ubuntu/$(lsb_release --release --short)/\$(ARCH) /"
-cat <<EOF > /tmp/apt-pref
+cat <<'EOF' >> /tmp/apt-pref
 sudo mv /tmp/apt-pref /etc/apt/preferences.d/buildbot-700
 sudo apt-get update
 sudo apt-get -y install --force-yes clusterhq-flocker-cli
