@@ -15,7 +15,7 @@ Please also refer to https://github.com/moravianlibrary/iipsrv-openjpeg/issues/2
 
 NOTE: this section assumes you already have docker installed.
 
-You only need to install this on your application server, not your data volume server.
+Install this on your application server and your data volume server.
 
 We want to create a shared volume on the host so we can remotely store our images (from https://docs.clusterhq.com/en/latest/docker-integration/install-client.html#installing-on-ubuntu-14-04-64-bit):
 
