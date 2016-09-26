@@ -11,28 +11,6 @@ IIIF validator v 1.0.0 @ https://pypi.python.org/pypi/iiif-validator/1.0.0
 
 Please also refer to https://github.com/moravianlibrary/iipsrv-openjpeg/issues/2
 
-### Install Flocker
-
-NOTE: this section assumes you already have docker installed.
-
-Install this on your application server and your data volume server.
-
-We want to create a shared volume on the host so we can remotely store our images (from https://docs.clusterhq.com/en/latest/docker-integration/install-client.html#installing-on-ubuntu-14-04-64-bit):
-
-```bash
-sudo apt-get update
-sudo apt-get -y install apt-transport-https software-properties-common
-sudo add-apt-repository -y "deb https://clusterhq-archive.s3.amazonaws.com/ubuntu/$(lsb_release --release --short)/\$(ARCH) /"
-cat <<EOF > /tmp/apt-pref
-> Package: *
-> Pin: origin clusterhq-archive.s3.amazonaws.com
-> Pin-Priority: 700
-> EOF
-sudo mv /tmp/apt-pref /etc/apt/preferences.d/buildbot-700
-sudo apt-get update
-sudo apt-get -y install --force-yes clusterhq-flocker-cli
-```
-
 ### Use  pre-built image
 Download image from docker hub. Defaults to `latest` tag. Docker will normally run as root unless otherwise configured.
 
@@ -47,7 +25,7 @@ Use local Dockerfile to build image. Defaults to `latest` tag.
 
     $ sudo docker build -t bdlss/iipsrv-openjpeg-docker .
 
-### Mount a shared-storage volume as a data volume
+### Mount a host directory for image store
 
 From https://docs.docker.com/engine/tutorials/dockervolumes/#/mount-a-host-directory-as-a-data-volume.
 
@@ -57,14 +35,9 @@ First, mount a host directory:
 sudo docker run -d -P --name iipimages -v /<host dir>:/<container dir> bdlss/iipsrv-openjpeg-docker
 ```
 
-Second, declare it as shared storage using Flocker:
+e.g. `sudo docker run -d -P --name iipimages -v /home/iipsrv/data:/var/www/localhost/images bdlss/iipsrv-openjpeg-docker`
 
-```bash
-sudo docker run -d -P \
-  --volume-driver=flocker \
-  -v iipimages:/<host dir> \
-  --name iipimages bdlss/iipsrv-openjpeg-docker
-```
+The above means that the host directory `/home/iipsrv/data` will be mapped to the directory within the container for image store.
 
 ### Start the container
 Defaults to `latest` tag.
