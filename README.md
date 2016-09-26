@@ -35,9 +35,21 @@ First, mount a host directory:
 sudo docker run -d -P --name iipimages -v /<host dir>:/<container dir> bdlss/iipsrv-openjpeg-docker
 ```
 
-e.g. `sudo docker run -d -P --name iipimages -v /home/iipsrv/data:/var/www/localhost/images bdlss/iipsrv-openjpeg-docker`
+e.g. 
+
+```bash
+sudo docker run -d -P --name iipimages -v /home/iipsrv/data:/var/www/localhost/images bdlss/iipsrv-openjpeg-docker`
+```
 
 The above means that the host directory `/home/iipsrv/data` will be mapped to the directory within the container for image store.
+
+```bash
+	&& cd /var/www/localhost/images/ \
+	&& wget http://iiif-test.stanford.edu/67352ccc-d1b0-11e1-89ae-279075081939.jp2 \
+	&& chmod 777 67352ccc-d1b0-11e1-89ae-279075081939.jp2 \
+	&& wget http://merovingio.c2rmf.cnrs.fr/iipimage/PalaisDuLouvre.tif \
+	&& chmod 777 PalaisDuLouvre.tif \
+```
 
 ### Start the container
 Defaults to `latest` tag.
