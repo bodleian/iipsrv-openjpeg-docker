@@ -31,14 +31,8 @@ RUN cp src/iipsrv.fcgi /var/www/localhost/fcgi-bin
 # copy over apache2.conf for apache
 COPY /001-iipsrv.conf /etc/apache2/sites-available/001-iipsrv.conf
 
-# create image dir and get test jp2 image
+# create image dir and get test jp2 image, images are placed inside mapped host directory (see README)
 RUN mkdir -p /var/www/localhost/images/ \
-	&& cd /var/www/localhost/images/ \
-	&& wget http://iiif-test.stanford.edu/67352ccc-d1b0-11e1-89ae-279075081939.jp2 \
-	&& chmod 777 67352ccc-d1b0-11e1-89ae-279075081939.jp2 \
-	&& wget http://merovingio.c2rmf.cnrs.fr/iipimage/PalaisDuLouvre.tif \
-
-	&& chmod 777 PalaisDuLouvre.tif \
 	&& chown -R www-data:www-data /var/www/
 
 # install python
