@@ -56,6 +56,7 @@ EXPOSE 80
 
 # enable fcgid mod 
 RUN a2enmod fcgid
+RUN a2enmod headers
 
 # disable default site conf
 RUN sudo a2dissite 000-default.conf
